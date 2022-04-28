@@ -238,6 +238,8 @@ function Details() {
           </form>
         )}
       </div>
+      <br />
+      <br />
     </>
   );
 }
