@@ -88,7 +88,10 @@ function Home() {
         colSpan: 1,
         // aria-sort:"ascending"
         "aria-label": "drag & drop: activate to sort column ascending",
-        style: { width: "10px", backgroundColor: "#5E5E5E" },
+        style: {
+          width: "10px",
+          backgroundColor: "#5E5E5E",
+        },
       },
       content: <></>,
     },
@@ -126,7 +129,11 @@ function Home() {
         rowSpan: 1,
         colSpan: 1,
         "aria-label": "Fee Type Code: activate to sort column ascending",
-        style: { width: "218.159px", backgroundColor: "#5E5E5E" },
+        style: {
+          minWidth: "110px",
+          width: "120px",
+          backgroundColor: "#5E5E5E",
+        },
         onClick: () => {
           handleSort("code");
         },
@@ -141,7 +148,12 @@ function Home() {
         rowSpan: 1,
         colSpan: 1,
         "aria-label": "Fee Type Name: activate to sort column ascending",
-        style: { width: "96.9659px", backgroundColor: "#5E5E5E" },
+        style: {
+          minWidth: "120px",
+
+          width: "125px",
+          backgroundColor: "#5E5E5E",
+        },
         onClick: () => {
           handleSort("name");
         },
@@ -156,7 +168,12 @@ function Home() {
         rowSpan: 1,
         colSpan: 1,
         "aria-label": "Description: activate to sort column ascending",
-        style: { width: "39.0227px", backgroundColor: "#5E5E5E" },
+        style: {
+          minWidth: "130px",
+
+          width: "218.159px",
+          backgroundColor: "#5E5E5E",
+        },
         onClick: () => {
           handleSort("description");
         },
@@ -509,7 +526,7 @@ function Home() {
                     <br />
                     <button
                       onClick={() => setStatusAdvanced(!statusAdvanced)}
-                      className="btn btn-white border "
+                      className="btn btn-sm btn-white border "
                       type="button"
                       id="dropdownMenuButton1"
                       data-bs-toggle="dropdown"
