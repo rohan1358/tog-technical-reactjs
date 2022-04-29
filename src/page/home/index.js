@@ -28,6 +28,9 @@ function Home() {
   const [ContentTable, setContentTable] = React.useState(initialContentTable);
   const [loading, setLoading] = React.useState(false);
 
+  const [openAdvanced, setOpenAdvanced] = useState(false);
+  const [statusAdvanced, setStatusAdvanced] = useState(false);
+
   const [checkAll, setCheckAll] = React.useState(false);
 
   const [successDelete, setSuccessDelete] = React.useState(false);
@@ -390,6 +393,8 @@ function Home() {
   };
 
   const handleFilterByStatus = (status) => {
+    window.$(".dropdown-toggle").dropdown("hide");
+    setStatusAdvanced(false);
     setStatus(status);
     setPage({ take: 10, skip: 0 });
   };
@@ -404,9 +409,6 @@ function Home() {
       active: false,
     },
   ];
-
-  const [openAdvanced, setOpenAdvanced] = useState(false);
-  const [statusAdvanced, setStatusAdvanced] = useState(false);
 
   return (
     <>
@@ -521,15 +523,16 @@ function Home() {
               </div>
               <div className="collapse " id="collapseFeeType">
                 <div className="card card-body bg-light">
-                  <div className="dropdown">
+                  <div className="dropdown " id="dd-status">
                     <b>Status</b>
                     <br />
                     <button
                       onClick={() => setStatusAdvanced(!statusAdvanced)}
-                      className="btn btn-sm btn-white border "
+                      className="btn btn-sm btn-white border dropdown-toggle"
                       type="button"
                       id="dropdownMenuButton1"
                       data-bs-toggle="dropdown"
+                      // data-toggle="dropdown"
                       data-bs-auto-close="false"
                       aria-expanded="false"
                       style={{
