@@ -178,7 +178,7 @@ const download = async (data) => {
 };
 
 function printData() {
-  var divToPrint = document.getElementById("example");
+  var divToPrint = document.getElementById("fee_type");
   let newWin = window.open("");
   newWin.document.write(divToPrint.outerHTML);
   newWin.print();

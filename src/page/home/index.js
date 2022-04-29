@@ -83,7 +83,7 @@ function Home() {
         datatype: "number",
         className: "cursor-auto text-light",
         tabIndex: 0,
-        "aria-controls": "example",
+        "aria-controls": "fee_type",
         rowSpan: 1,
         colSpan: 1,
         // aria-sort:"ascending"
@@ -97,7 +97,7 @@ function Home() {
         onClick: () => handleCheckAll(),
         className: "cursor-pointer text-center text-light",
         tabIndex: 0,
-        "aria-controls": "example",
+        "aria-controls": "fee_type",
         rowSpan: 1,
         colSpan: 1,
         // aria-sort:"ascending"
@@ -122,7 +122,7 @@ function Home() {
       attr: {
         className: `sorting ${positionSort("code")} text-light`,
         tabIndex: 0,
-        "aria-controls": "example",
+        "aria-controls": "fee_type",
         rowSpan: 1,
         colSpan: 1,
         "aria-label": "Fee Type Code: activate to sort column ascending",
@@ -137,7 +137,7 @@ function Home() {
       attr: {
         className: `sorting ${positionSort("name")} text-light`,
         tabIndex: 0,
-        "aria-controls": "example",
+        "aria-controls": "fee_type",
         rowSpan: 1,
         colSpan: 1,
         "aria-label": "Fee Type Name: activate to sort column ascending",
@@ -152,7 +152,7 @@ function Home() {
       attr: {
         className: `sorting ${positionSort("description")} text-light`,
         tabIndex: 0,
-        "aria-controls": "example",
+        "aria-controls": "fee_type",
         rowSpan: 1,
         colSpan: 1,
         "aria-label": "Description: activate to sort column ascending",
@@ -167,7 +167,7 @@ function Home() {
       attr: {
         className: `sorting ${positionSort("status")} text-light`,
         tabIndex: 0,
-        "aria-controls": "example",
+        "aria-controls": "fee_type",
         rowSpan: 1,
         colSpan: 1,
         "aria-label": "Status: activate to sort column ascending",
@@ -182,7 +182,7 @@ function Home() {
       attr: {
         className: "cursor-auto text-light",
         tabIndex: 0,
-        "aria-controls": "example",
+        "aria-controls": "fee_type",
         rowSpan: 1,
         colSpan: 1,
         "aria-label": "Actions: activate to sort column ascending",
@@ -194,19 +194,19 @@ function Home() {
 
   const dragAndDrop = () => {
     var iCnt = 1;
-    window.$("#example tbody tr").each(function () {
+    window.$("#fee_type tbody tr").each(function () {
       var id = "tr" + parseInt(iCnt);
       window.$(this).attr("id", id);
       iCnt++;
     });
-    window.$("#example").find("tr:even").addClass("even");
-    window.$("#example").find("tr:odd").addClass("odd");
-    window.$("#example").tableDnD({
+    window.$("#fee_type").find("tr:even").addClass("even");
+    window.$("#fee_type").find("tr:odd").addClass("odd");
+    window.$("#fee_type").tableDnD({
       onDragClass: "myDragClass",
       onDrop: function (table, row) {
-        window.$("#example").find("tr").removeClass("even odd");
-        window.$("#example").find("tr:even").addClass("even");
-        window.$("#example").find("tr:odd").addClass("odd");
+        window.$("#fee_type").find("tr").removeClass("even odd");
+        window.$("#fee_type").find("tr:even").addClass("even");
+        window.$("#fee_type").find("tr:odd").addClass("odd");
       },
     });
     // });
@@ -408,16 +408,16 @@ function Home() {
           <h3>Fee Type</h3>
           {/* table */}
           <div className={" m-2"}>
-            <div id="example_wrapper" className="dataTables_wrapper">
-              <div className="row">
-                <div className="dataTables_length col" id="example_length">
-                  <div className="row">
-                    <div className="input-group mb-3 col">
+            <div id="fee_type_wrapper" className="dataTables_wrapper">
+              <div className="row mb-0">
+                <div className="dataTables_length col" id="fee_type_length">
+                  <div className="row w-75">
+                    <div className="input-group input-group-sm mb-3 col ">
                       <input
                         value={keyword}
                         onChange={(e) => handleSearch(e.target.value)}
                         type="text"
-                        className="form-control border-end-0"
+                        className="form-control border-end-0 "
                         placeholder="Search..."
                         aria-label="Search"
                         aria-describedby="basic-addon2"
@@ -434,12 +434,12 @@ function Home() {
                     <div className="col align-items-center">
                       <button
                         onClick={() => setOpenAdvanced(!openAdvanced)}
-                        className="btn btn-light"
+                        className="btn btn-sm btn-light"
                         type="button"
                         data-bs-toggle="collapse"
-                        data-bs-target="#collapseExample"
+                        data-bs-target="#collapseFeeType"
                         aria-expanded="false"
-                        aria-controls="collapseExample"
+                        aria-controls="collapseFeeType"
                       >
                         <b>
                           Advanced Options{" "}
@@ -457,54 +457,52 @@ function Home() {
                 </div>
                 <div
                   className="dataTables_length col-md-auto"
-                  id="example_length"
+                  id="fee_type_length"
                 >
-                  <div>
-                    <button
-                      onClick={() => download(ContentTable)}
-                      type="button"
-                      className="btn  btn-sm btn-secondary m-1 rounded-circle"
-                      data-bs-toggle="tooltip"
-                      data-bs-placement="top"
-                      title="Click to download"
-                    >
-                      <i className="bi bi-download" />
-                    </button>
-                    <button
-                      id="print"
-                      onClick={async () => {
-                        defaultTake = page.take;
-                        await setPage({ ...page, take: ContentTable.length });
-                        handlePrint();
-                        setTimeout(() => {
-                          setPage({ ...page, take: defaultTake });
-                        }, 250);
-                      }}
-                      type="button"
-                      className="btn btn-sm btn-secondary m-1 rounded-circle"
-                      data-bs-toggle="tooltip"
-                      data-bs-placement="top"
-                      title="Click to print"
-                    >
-                      <i className="bi bi-printer" />
-                    </button>
-                    <button
-                      onClick={() => navigation("create-update")}
-                      type="button"
-                      className="btn  m-1 btn-sm fw-bold"
-                      data-bs-toggle="tooltip"
-                      data-bs-placement="top"
-                      title="Click to create"
-                      style={{
-                        backgroundColor: "#F3C244",
-                      }}
-                    >
-                      <i className="bi bi-file-earmark-plus" /> Create New
-                    </button>
-                  </div>
+                  <button
+                    onClick={() => download(ContentTable)}
+                    type="button"
+                    className="btn  btn-sm btn-secondary me-1 rounded-circle"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="top"
+                    title="Click to download"
+                  >
+                    <i className="bi bi-download" />
+                  </button>
+                  <button
+                    id="print"
+                    onClick={async () => {
+                      defaultTake = page.take;
+                      await setPage({ ...page, take: ContentTable.length });
+                      handlePrint();
+                      setTimeout(() => {
+                        setPage({ ...page, take: defaultTake });
+                      }, 250);
+                    }}
+                    type="button"
+                    className="btn btn-sm btn-secondary me-1 rounded-circle"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="top"
+                    title="Click to print"
+                  >
+                    <i className="bi bi-printer" />
+                  </button>
+                  <button
+                    onClick={() => navigation("create-update")}
+                    type="button"
+                    className="btn  me-1 btn-sm fw-bold"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="top"
+                    title="Click to create"
+                    style={{
+                      backgroundColor: "#F3C244",
+                    }}
+                  >
+                    <i className="bi bi-file-earmark-plus" /> Create New
+                  </button>
                 </div>
               </div>
-              <div className="collapse " id="collapseExample">
+              <div className="collapse " id="collapseFeeType">
                 <div className="card card-body bg-light">
                   <div className="dropdown">
                     <b>Status</b>
@@ -613,10 +611,10 @@ function Home() {
               <div>
                 <table
                   ref={componentRef}
-                  id="example"
+                  id="fee_type"
                   className="display dataTable border rounded border-1"
                   style={{ width: "100%" }}
-                  aria-describedby="example_info"
+                  aria-describedby="fee_type_info"
                 >
                   <thead>
                     <tr>
@@ -721,7 +719,9 @@ function Home() {
                         })
                     ) : (
                       <tr>
-                        <td colSpan={header.length}>Empty</td>
+                        <td colSpan={header.length} className="text-center">
+                          Empty
+                        </td>
                       </tr>
                     )}
                   </tbody>
@@ -740,15 +740,15 @@ function Home() {
               <div className="row m-1 align-items-center">
                 <div
                   className="dataTables_length col-md-auto  align-items-center p-0 pe-1 ps-1"
-                  id="example_length"
+                  id="fee_type_length"
                 >
                   <label>
                     <select
                       onChange={(e) =>
                         setPage({ skip: 0, take: parseInt(e.target.value) })
                       }
-                      name="example_length"
-                      aria-controls="example"
+                      name="fee_type_length"
+                      aria-controls="fee_type"
                       className
                     >
                       <option value={10}>10</option>
@@ -760,7 +760,7 @@ function Home() {
                 </div>
                 <div
                   className="dataTables_info  col align-items-center p-0 pe-1 ps-1"
-                  id="example_info"
+                  id="fee_type_info"
                   role="status"
                   aria-live="polite"
                 >
@@ -773,7 +773,7 @@ function Home() {
                 Page :{" "}
                 <div
                   className="dataTables_paginate paging_simple_numbers col-md-auto align-items-center p-0 pe-1 ps-1"
-                  id="example_paginate"
+                  id="fee_type_paginate"
                 >
                   <Pagination
                     onChange={(e, page) => handlePage(page)}

@@ -35,7 +35,6 @@ function Header() {
             >
               <i className="bi bi-bell" />
             </button>
-            {/* Example single danger button */}
             <div className="btn-group">
               <button
                 className="btn btn-sm nav-link active p-0 ps-2 pe-2"
